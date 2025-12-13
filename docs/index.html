@@ -1813,6 +1813,19 @@
         opacity: 0.7;
     }
 
+    .machinery-video video{
+        width: 100%;
+        height: 250px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 2rem;
+        position: relative;
+        object-fit: cover;
+    }
+
     /* ============ MENU MOBILE FIX DEFINITIVO ============ */
     @media (max-width: 768px) {
         /* HEADER FIX - Importante per z-index */
@@ -2039,6 +2052,119 @@
         .nav-menu:not(.active) {
             display: none !important;
         }
+    }
+
+    /* Stile per multiple banner */
+    #promo-banners-container {
+        position: relative;
+        margin: 20px auto;
+        max-width: 1200px;
+    }
+
+    .promo-banner:not(:last-child) {
+        margin-bottom: 20px;
+    }
+
+    /* Colori diversi per diverse promozioni */
+    .promo-banner[data-promo-id*="natale"] .promo-badge {
+        background: linear-gradient(135deg, #ff4757, #ff3742);
+    }
+
+    .promo-banner[data-promo-id*="sanvalentino"] .promo-badge {
+        background: linear-gradient(135deg, #e91e63, #c2185b);
+    }
+
+    .promo-banner[data-promo-id*="lamp"] .promo-badge {
+        background: linear-gradient(135deg, #00c6ff, #0072ff);
+    }
+
+    /* Animazione per nuovi banner */
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .promo-banner {
+        animation: slideDown 0.5s ease;
+    }
+
+    /* Assicurati che queste classi siano definite */
+    .promo-banner {
+        margin: 40px auto;
+        max-width: 1200px;
+        padding: 40px;
+        background: linear-gradient(135deg, 
+                    rgba(0, 198, 255, 0.1) 0%, 
+                    rgba(148, 0, 255, 0.1) 100%);
+        border: 1px solid rgba(0, 198, 255, 0.3);
+        border-radius: 25px;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: block !important;
+    }
+
+    .promo-banner .promo-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .countdown-container {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin: 25px 0;
+        flex-wrap: wrap;
+    }
+
+    .countdown-box {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: 15px 10px;
+        min-width: 80px;
+        text-align: center;
+    }
+
+    .countdown-number {
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--accent-color);
+        display: block;
+        line-height: 1;
+    }
+
+    .countdown-label {
+        font-size: 11px;
+        color: var(--text-secondary);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        display: block;
+        margin-top: 5px;
+    }
+
+    /* Se il banner è nascosto, mostra un messaggio di debug */
+    #promo-banners-container:empty::before {
+        content: "⏳ Nessuna promozione attiva al momento";
+        display: block;
+        text-align: center;
+        color: var(--text-secondary);
+        padding: 40px;
+        font-style: italic;
     }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -2464,6 +2590,83 @@
                         </div>
                     </div>
 
+                    <!-- Sezione Video Macchinari -->
+                    <div style="background: linear-gradient(135deg, rgba(0, 198, 255, 0.05) 0%, rgba(148, 0, 255, 0.05) 100%); 
+                                border-radius: 20px; padding: 40px; border: 1px solid rgba(0, 198, 255, 0.2); 
+                                position: relative; overflow: hidden; margin-top: 40px;">
+                        <div style="position: absolute; top: -50px; left: -50px; width: 200px; height: 200px; 
+                                    background: radial-gradient(circle, rgba(0, 198, 255, 0.1) 0%, transparent 70%); 
+                                    border-radius: 50%;"></div>
+                        
+                        <h3 style="color: white; margin-bottom: 30px; font-size: 24px; display: flex; align-items: center; gap: 15px; position: relative; z-index: 2;">
+                            <i class="fas fa-video" style="color: var(--accent-color);"></i>
+                            I Nostri Macchinari
+                        </h3>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; position: relative; z-index: 2;">
+                            
+                            <!-- Video 1: Incisione Laser -->
+                            <div style="background: rgba(255,255,255,0.05); border-radius: 15px; overflow: hidden; border: 1px solid var(--glass-border);">
+                                <div class="machinery-video" style="overflow: hidden;">
+                                    <video src="video/timeLapsInc1.mp4" controls></video>
+                                </div>
+                                <div style="padding: 20px;">
+                                    <h4 style="color: white; margin-bottom: 10px;">Incisore Laser Diodo in Azione</h4>
+                                    <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.5;">
+                                        Il nostro incisore laser lavora con precisione millimetrica su diversi materiali.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <!-- Video 2: Stampa 3D -->
+                            <div style="background: rgba(255,255,255,0.05); border-radius: 15px; overflow: hidden; border: 1px solid var(--glass-border);">
+                                <div class="machinery-video" style="overflow: hidden;">
+                                    <video src="video/timeLapsSt3D2.mp4" controls></video>
+                                </div>
+                                <div style="padding: 20px;">
+                                    <h4 style="color: white; margin-bottom: 10px;">Stampante 3D al Lavoro</h4>
+                                    <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.5;">
+                                        Il nostro processo di stampa 3D con filamenti PLA/ABS di qualità, layer dopo layer, crea oggetti con dettagli incredibili.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <!-- Video 3: Progettazione -->
+                            <div style="background: rgba(255,255,255,0.05); border-radius: 15px; overflow: hidden; border: 1px solid var(--glass-border);">
+                                <div class="machinery-video" style="overflow: hidden;">
+                                    <video src="video/timeVideoCMY.mp4" controls></video>
+                                </div>
+                                <div style="padding: 20px;">
+                                    <h4 style="color: white; margin-bottom: 10px;">Stampa Multicolore</h4>
+                                    <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.5;">
+                                        Tecnologia CMY per stampe a colori vivaci e litofanie.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Video 4: Progettazione -->
+                            <div style="background: rgba(255,255,255,0.05); border-radius: 15px; overflow: hidden; border: 1px solid var(--glass-border);">
+                                <div class="machinery-video" style="overflow: hidden;">
+                                    <video src="video/timeLapsInc2.mp4" controls></video>
+                                </div>
+                                <div style="padding: 20px;">
+                                    <h4 style="color: white; margin-bottom: 10px;">Processo di Incisione</h4>
+                                    <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.5;">
+                                        Ogni dettaglio viene curato con la massima attenzione.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Nota per i video reali -->
+                        <div style="margin-top: 25px; padding: 15px; background: rgba(0, 198, 255, 0.05); border-radius: 10px; border-left: 4px solid var(--accent-color);">
+                            <p style="color: var(--text-secondary); font-size: 14px; margin: 0;">
+                                <i class="fas fa-info-circle" style="margin-right: 8px; color: var(--accent-color);"></i>
+                                <strong>Nota:</strong> Questi sono video dimostrativi.
+                            </p>
+                        </div>
+                    </div>
+
                     <!-- Sezione Tecnologia -->
                     <div style="background: linear-gradient(135deg, rgba(0, 198, 255, 0.05) 0%, rgba(148, 0, 255, 0.05) 100%); 
                                 border-radius: 20px; padding: 40px; border: 1px solid rgba(0, 198, 255, 0.2); 
@@ -2484,7 +2687,7 @@
                                     <i class="fas fa-ruler-combined" style="font-size: 32px; color: var(--accent-color);"></i>
                                 </div>
                                 <h4 style="color: white; margin-bottom: 10px;">Precisione Laser</h4>
-                                <p style="color: var(--text-secondary); font-size: 14px;">Macchine CO₂ con precisione di ±0.1mm</p>
+                                <p style="color: var(--text-secondary); font-size: 14px;">Macchine Diodo con precisione di ±0.1mm</p>
                             </div>
                             
                             <div style="text-align: center;">
@@ -2502,7 +2705,7 @@
                                     <i class="fas fa-leaf" style="font-size: 32px; color: #00C853;"></i>
                                 </div>
                                 <h4 style="color: white; margin-bottom: 10px;">Materiali Eco</h4>
-                                <p style="color: var(--text-secondary); font-size: 14px;">PLA biodegradabile e legni certificati FSC</p>
+                                <p style="color: var(--text-secondary); font-size: 14px;">PLA biodegradabile e legni certificati</p>
                             </div>
                             
                             <div style="text-align: center;">
@@ -2511,7 +2714,7 @@
                                     <i class="fas fa-laptop-code" style="font-size: 32px; color: #FFC107;"></i>
                                 </div>
                                 <h4 style="color: white; margin-bottom: 10px;">Software Avanzati</h4>
-                                <p style="color: var(--text-secondary); font-size: 14px;">Fusion 360, LightBurn, Cura, PrusaSlicer</p>
+                                <p style="color: var(--text-secondary); font-size: 14px;">Bambu Studio, LightBurn, Cura, Thinkercad</p>
                             </div>
                         </div>
                     </div>
@@ -2524,7 +2727,7 @@
                         
                         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 30px;">
                             <div style="text-align: center; padding: 25px; background: rgba(255,255,255,0.05); border-radius: 15px;">
-                                <h4 style="color: var(--accent-color); font-size: 42px; margin-bottom: 10px; font-weight: 700;">750+</h4>
+                                <h4 style="color: var(--accent-color); font-size: 42px; margin-bottom: 10px; font-weight: 700;">150+</h4>
                                 <p style="color: var(--text-secondary); font-size: 15px; font-weight: 500;">Prodotti Realizzati</p>
                                 <div style="width: 40px; height: 3px; background: var(--accent-color); margin: 15px auto 0; border-radius: 2px;"></div>
                             </div>
@@ -2536,13 +2739,13 @@
                             </div>
                             
                             <div style="text-align: center; padding: 25px; background: rgba(255,255,255,0.05); border-radius: 15px;">
-                                <h4 style="color: #9400ff; font-size: 42px; margin-bottom: 10px; font-weight: 700;">3+</h4>
+                                <h4 style="color: #9400ff; font-size: 42px; margin-bottom: 10px; font-weight: 700;">5+</h4>
                                 <p style="color: var(--text-secondary); font-size: 15px; font-weight: 500;">Anni di Esperienza</p>
                                 <div style="width: 40px; height: 3px; background: #9400ff; margin: 15px auto 0; border-radius: 2px;"></div>
                             </div>
                             
                             <div style="text-align: center; padding: 25px; background: rgba(255,255,255,0.05); border-radius: 15px;">
-                                <h4 style="color: #FFC107; font-size: 42px; margin-bottom: 10px; font-weight: 700;">200+</h4>
+                                <h4 style="color: #FFC107; font-size: 42px; margin-bottom: 10px; font-weight: 700;">50+</h4>
                                 <p style="color: var(--text-secondary); font-size: 15px; font-weight: 500;">Clienti Soddisfatti</p>
                                 <div style="width: 40px; height: 3px; background: #FFC107; margin: 15px auto 0; border-radius: 2px;"></div>
                             </div>
@@ -2665,45 +2868,50 @@
         </a>
     </div>
 
-    <!-- Promo Banner -->
-    <div class="promo-banner glass-card" id="promo-banner">
-        <div class="promo-content">
-            <div class="promo-badge">
-                <i class="fas fa-gift"></i>
-                OFFERTA NATALIZIA LIMITATA
+    <!-- SOSTITUISCI TUTTO IL DIV con id="promo-banner" con: -->
+    <!-- Promo Banners Container -->
+    <div id="promo-banners-container" style="max-width: 1200px; margin: 40px auto; padding: 0 20px;"></div>
+
+    <!-- Template per banner promozionale -->
+    <template id="promo-banner-template">
+        <div class="promo-banner glass-card" data-promo-id="">
+            <div class="promo-content">
+                <div class="promo-badge">
+                    <i class="fas fa-gift"></i>
+                    <span class="promo-label">OFFERTA</span>
+                </div>
+                <h3 class="promo-title">Titolo Offerta</h3>
+                <p class="promo-description">Descrizione offerta</p>
+                
+                <div class="countdown-container">
+                    <div class="countdown-box">
+                        <span class="countdown-number" data-type="days">00</span>
+                        <span class="countdown-label">Giorni</span>
+                    </div>
+                    <div class="countdown-box">
+                        <span class="countdown-number" data-type="hours">00</span>
+                        <span class="countdown-label">Ore</span>
+                    </div>
+                    <div class="countdown-box">
+                        <span class="countdown-number" data-type="minutes">00</span>
+                        <span class="countdown-label">Minuti</span>
+                    </div>
+                    <div class="countdown-box">
+                        <span class="countdown-number" data-type="seconds">00</span>
+                        <span class="countdown-label">Secondi</span>
+                    </div>
+                </div>
+                
+                <button class="promo-btn glass-btn" data-section="catalogo">
+                    <span>Sfrutta l'offerta</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
             </div>
-            <h3 class="promo-title">Sconto del 10% su Incisioni Laser e Stampe 3D!</h3>
-            <p class="promo-description">Valido fino al 31 Dicembre 2025</p>
-            
-            <div class="countdown-container">
-                <div class="countdown-box">
-                    <span class="countdown-number" id="days">00</span>
-                    <span class="countdown-label">Giorni</span>
-                </div>
-                <div class="countdown-box">
-                    <span class="countdown-number" id="hours">00</span>
-                    <span class="countdown-label">Ore</span>
-                </div>
-                <div class="countdown-box">
-                    <span class="countdown-number" id="minutes">00</span>
-                    <span class="countdown-label">Minuti</span>
-                </div>
-                <div class="countdown-box">
-                    <span class="countdown-number" id="seconds">00</span>
-                    <span class="countdown-label">Secondi</span>
-                </div>
-            </div>
-            
-            <button class="promo-btn glass-btn" data-section="catalogo">
-                <span>Sfrutta l'offerta</span>
-                <i class="fas fa-arrow-right"></i>
+            <button class="promo-close">
+                <i class="fas fa-times"></i>
             </button>
         </div>
-        <button class="promo-close" id="promo-close">
-            <i class="fas fa-times"></i>
-        </button>
-
-    </div>
+    </template>
 
     <!-- Footer -->
     <footer class="glass-footer">
@@ -2819,8 +3027,12 @@
                     promotion: {
                         active: true,
                         discount: 10, // percentuale
-                        endDate: '2025-12-31', // YYYY-MM-DD
-                        label: 'OFFERTA NATALIZIA'
+                        schedule: {
+                            startDate: '2026-05-15T00:00:00',
+                            endDate: '2026-06-30T23:59:59'
+                        },
+                        label: 'OFFERTA ESTIVA',
+                        promoId: 'estate2026'
                     },
                     category: 'bambini',
                     image: 'img/incisioni/fioccoNascita/fioccoNascita.jpeg',
@@ -2857,47 +3069,256 @@
                     name: 'Incisione su Tavolino',
                     description: 'Tavolino in legno con incisione laser personalizzabile',
                     descrizioneApprofondita: 'Tavolino elegante personalizzato con incisione laser.',
-                    basePrice: 19.99,
+                    basePrice: 20,
                     promotion: {
                         active: true,
                         discount: 10, // percentuale
-                        endDate: '2025-12-31', // YYYY-MM-DD
-                        label: 'OFFERTA NATALIZIA'
+                        schedule: {
+                            startDate: '2026-11-15T00:00:00', // Data/ora di inizio
+                            endDate: '2026-11-30T23:59:59'    // Data/ora di fine
+                        },
+                        label: 'OFFERTA BLACK FRIDAY',
+                        promoId: 'blackFriday2026'
                     },
                     category: 'arredamento',
-                    image: 'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=400&h=300&fit=crop',
+                    image: 'img/incisioni/incisioneTavolino/tavolinoPubTorrione.jpeg',
+                    gallery: [
+                        'img/incisioni/incisioneTavolino/tavolinoPubTorrione.jpeg',
+                    ],
                     customizations: {
                         dimensioni: {
                             label: 'Dimensioni',
                             options: [
                                 { name: '20x20cm', price: 0 },
-                                { name: '40x40cm', price: 9.99 }
+                                { name: '40x40cm', price: 10 },
+                                { name: '50x50cm', price: 15 },
+                                { name: '60x60cm', price: 20 },
+                                { name: '70x70cm', price: 25 },
+                                { name: '80x80cm', price: 30 }
                             ]
-                        }
+                        },
+
+                        names: { label: 'Personalizzazione', type: 'text', maxLength: 100 },
                     }
                 },
                 {
                     id: 'INC3',
                     name: 'Foto Incisione',
-                    description: 'Foto incisione personalizzata su legno',
-                    descrizioneApprofondita: 'Incisione su legno di una foto personalizzata.',
-                    basePrice: 24.99,
+                    description: 'Foto incisione personalizzata su legno, un modo per conservare i tuoi ricordi in modo unico.',
+                    descrizioneApprofondita: 'Incisione su legno di una foto personalizzata, perfetta per creare un ricordo unico e duraturo. Realizzata con tecnologia laser di alta precisione, questa incisione trasforma la tua immagine in un pezzo d\'arte da esporre o regalare. <br><br> NB: per garantire la migliore qualità di incisione, è necessario inviare il file in formato immagine HD al momento dell\'ordine.',
+                    basePrice: 20,
                     promotion: {
                         active: true,
                         discount: 10, // percentuale
-                        endDate: '2025-12-31', // YYYY-MM-DD
-                        label: 'OFFERTA NATALIZIA'
+                        schedule: {
+                            startDate: '2026-11-15T00:00:00', // Data/ora di inizio
+                            endDate: '2026-11-30T23:59:59'    // Data/ora di fine
+                        },
+                        label: 'OFFERTA BLACK FRIDAY',
+                        promoId: 'blackFriday2026'
                     },
                     category: 'decorazioni',
-                    image: 'https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=300&fit=crop',
+                    image: 'img/incisioni/fotoIncisioni/fotoIncisione.jpeg',
+                    gallery: [
+                        'img/incisioni/fotoIncisioni/fotoIncisione.jpeg',
+                    ],
                     customizations: {
                         dimensioni: {
                             label: 'Dimensioni',
                             options: [
                                 { name: '10x15cm', price: 0 },
-                                { name: '20x20cm', price: 3.99 }
+                                { name: '13x18cm', price: 3 },
+                                { name: '15x20cm', price: 5 },
+                                { name: '20x20cm', price: 7 },
+                                { name: '20x25cm', price: 9 },
+                                { name: '25x35cm', price: 10 }
                             ]
-                        }
+                        },
+
+                        names: { label: 'Personalizzazione (Frase/Data/Altro)', type: 'text', maxLength: 100 },
+                    }
+                },
+                {
+                    id: 'INC4',
+                    name: 'Gioco Tris Pasquale',
+                    description: 'Gioco Tris in legno con incisioni pasquali, perfetto come pensiero o decorazione per la Pasqua.',
+                    descrizioneApprofondita: 'Gioco Tris in legno con incisioni pasquali, ideale originale come regalo per piccini. Ogni pezzo è inciso con motivi pasquali, rendendo il gioco non solo divertente ma anche decorativo. Perfetto come regalo o come elemento di arredo per la Pasqua.',
+                    basePrice: 6,
+                    promotion: {
+                        active: true,
+                        discount: 10, // percentuale
+                        schedule: {
+                            startDate: '2026-03-01T00:00:00', // Data/ora di inizio
+                            endDate: '2026-04-05T00:00:00'    // Data/ora di fine
+                        },
+                        label: 'OFFERTA DI PASQUA',
+                        promoId: 'pasqua2026'
+                    },
+                    category: 'pasqua',
+                    image: 'img/incisioni/tris/tris (2).jpg',
+                    gallery: [
+                        'img/incisioni/tris/tris (2).jpg',
+                        'img/incisioni/tris/tris (1).jpg'
+                    ],
+                    customizations: {
+                        quantity: { label: 'Quantità Set', options: [
+                            { name: '1 pezzo', price: 0 },
+                            { name: '3 pezzi', price: 18 },
+                            { name: '5 pezzi', price: 30 },
+                            { name: '10 pezzi', price: 60 }
+                        ]},
+                        colore: { label: 'Colore Cornice', options: [
+                            { name: 'Nero', price: 0 },
+                            { name: 'Rosso', price: 0  },
+                            { name: 'Giallo', price: 0  },
+                            { name: 'Blu', price: 0 },
+                            { name: 'Verde', price: 0 },
+                            { name: 'Oro', price: 0 },
+                            { name: 'Argento', price: 0 },
+                            { name: 'Viola', price: 0 },
+                            { name: 'Rosa', price: 0 },
+                            { name: 'Arancio', price: 0 }
+                        ]},
+                        colore1: { label: 'Colore Uova', options: [
+                            { name: 'Nero', price: 0 },
+                            { name: 'Rosso', price: 0  },
+                            { name: 'Giallo', price: 0  },
+                            { name: 'Blu', price: 0 },
+                            { name: 'Verde', price: 0 },
+                            { name: 'Oro', price: 0 },
+                            { name: 'Argento', price: 0 },
+                            { name: 'Viola', price: 0 },
+                            { name: 'Rosa', price: 0 },
+                            { name: 'Arancio', price: 0 }
+                        ]},
+                        colore2: { label: 'Colore Coniglietti', options: [
+                            { name: 'Nero', price: 0 },
+                            { name: 'Rosso', price: 0  },
+                            { name: 'Giallo', price: 0  },
+                            { name: 'Blu', price: 0 },
+                            { name: 'Verde', price: 0 },
+                            { name: 'Oro', price: 0 },
+                            { name: 'Argento', price: 0 },
+                            { name: 'Viola', price: 0 },
+                            { name: 'Rosa', price: 0 },
+                            { name: 'Arancio', price: 0 }
+                        ]},
+
+                        personalization: { label: 'Nome', type: 'text', maxLength: 20 }
+                    }
+                },
+                {
+                    id: 'INC5',
+                    name: 'Rose Incise - Mamma',
+                    description: 'Rose incise su legno, un regalo perfetto per la festa della mamma o per ogni occasione speciale.',
+                    descrizioneApprofondita: 'Rose incise su legno, perfette per celebrare la festa della mamma o come regalo romantico. Ogni pezzo è realizzato con cura e attenzione ai dettagli, rendendo queste rose un simbolo di amore e affetto. Ideali come decorazione per la casa o come pensiero speciale per una persona cara.',
+                    basePrice: 7,
+                    promotion: {
+                        active: false,
+                        schedule: {
+                            startDate: '2025-12-13T13:04:40', // Data/ora di inizio
+                            endDate: '2025-12-13T13:05:30'    // Data/ora di fine
+                        },
+                        discount: 10, // percentuale
+                        label: 'OFFERTA SAN VALENTINO',
+                        promoId: 'sanvalentino2026'
+                    },
+                    category: 'gadget',
+                    image: 'img/incisioni/rose/rose (5).jpg',
+                    gallery: [
+                        'img/incisioni/rose/rose (5).jpg',
+                        'img/incisioni/rose/rose (2).jpg',
+                        'img/incisioni/rose/rose (3).jpg',
+                        'img/incisioni/rose/rose (4).jpg',
+                        'img/incisioni/rose/rose (1).jpg',
+                        'img/incisioni/rose/rose (6).jpg'
+                    ],
+                    customizations: {
+                        colore: { label: 'Colore Rosa', options: [
+                            { name: 'Nero', price: 0 },
+                            { name: 'Rosso', price: 0  },
+                            { name: 'Giallo', price: 0  },
+                            { name: 'Blu', price: 0 },
+                            { name: 'Verde', price: 0 },
+                            { name: 'Oro', price: 0 },
+                            { name: 'Argento', price: 0 },
+                            { name: 'Viola', price: 0 },
+                            { name: 'Rosa', price: 0 }
+                        ]},
+                    }
+                },
+                {
+                    id: 'INC6',
+                    name: 'Segnalibro Personalizzato',
+                    description: 'Segnalibro in legno personalizzato, ideale per gli amanti della lettura e dei regali unici.',
+                    descrizioneApprofondita: 'Segnalibro in legno personalizzato, perfetto per gli appassionati di lettura. Ogni segnalibro è inciso con cura e può essere personalizzato con nomi, citazioni o disegni a scelta, rendendolo un regalo unico e speciale per ogni amante dei libri.',
+                    basePrice: 7,
+                    promotion: {
+                        active: true,
+                        discount: 10, // percentuale
+                        schedule: {
+                            startDate: '2025-12-01T00:00:00', // Data/ora di inizio
+                            endDate: '2025-12-31T23:59:59'    // Data/ora di fine
+                        },
+                        label: 'OFFERTA NATALIZIA',
+                        promoId: 'natale2025'
+                    },
+                    category: 'gadget',
+                    image: 'img/incisioni/segnalibro/segnalibro (2).jpg',
+                    gallery: [
+                        'img/incisioni/segnalibro/segnalibro (2).jpg',
+                        'img/incisioni/segnalibro/segnalibro (1).jpg'
+                    ],
+                    customizations: {
+                        colore: { label: 'Colore Nappina', options: [
+                            { name: 'Nero', price: 0 },
+                            { name: 'Rosso', price: 0  },
+                            { name: 'Giallo', price: 0  },
+                            { name: 'Blu', price: 0 },
+                            { name: 'Verde', price: 0 },
+                            { name: 'Oro', price: 0 },
+                            { name: 'Argento', price: 0 },
+                            { name: 'Viola', price: 0 },
+                            { name: 'Rosa', price: 0 },
+                            { name: 'Arancio', price: 0 }
+                        ]},
+
+                        personalization: { label: 'Personalizzazione', type: 'text', maxLength: 100 }
+                    }
+                },
+                {
+                    id: 'INC7',
+                    name: 'Stemmi Harry Potter Multistrato',
+                    description: 'Stemmi di Harry Potter in legno multistrato, perfetti per decorare la tua casa o come regalo per i fan della saga.',
+                    descrizioneApprofondita: 'Ogni stemma è inciso con precisione e può essere appeso o esposto su una mensola, aggiungendo un tocco magico a qualsiasi ambiente.',
+                    basePrice: 15,
+                    promotion: {
+                        active: true,
+                        discount: 10, // percentuale
+                        schedule: {
+                            startDate: '2026-10-15T00:00:00', // Data/ora di inizio
+                            endDate: '2026-11-14T23:59:59'    // Data/ora di fine
+                        },
+                        label: 'OFFERTA HARRY POTTER',
+                        promoId: 'harrypotter2026'
+                    },
+                    category: 'decorazioni',
+                    image: 'img/incisioni/stemmi/Incisioni.png',
+                    gallery: [
+                        'img/incisioni/stemmi/Incisioni.png',
+                        'img/incisioni/stemmi/stemmi (4).jpg',
+                        'img/incisioni/stemmi/stemmi (1).jpg',
+                        'img/incisioni/stemmi/stemmi (2).jpg',
+                        'img/incisioni/stemmi/stemmi (3).jpg',
+                    ],
+                    customizations: {
+                        pack: { label: 'Pacchetto', options: [
+                            { name: '1 stemma', price: 0 },
+                            { name: '2 stemmi', price: 30 },
+                            { name: '3 stemmi', price: 45 },
+                            { name: '4 stemmi', price: 60 },
+                            { name: '5 stemmi', price: 70 }
+                        ]},
                     }
                 }
             ],
@@ -2905,39 +3326,294 @@
                 {
                     id: 'ST3D1',
                     name: 'Scacchiera - Harry Potter',
-                    description: 'Scacchiera in plastica PLA con base in legno',
-                    descrizioneApprofondita: 'Scacchiera ispirata al magico mondo di Harry Potter.',
-                    basePrice: 39.99,
+                    description: 'Scacchiera in plastica PLA con base in legno compensato',
+                    descrizioneApprofondita: 'Scacchiera ispirata al magico mondo di Harry Potter, perfetta per collezionisti e appassionati. La base è realizzata in legno compensato resistente, mentre tabellone e pedine sono stampati in 3D con plastica di alta qualità, per un design dettagliato e duraturo. Ideale come regalo o per aggiungere un tocco di magia alle tue partite a scacchi.',
+                    basePrice: 40,
+                    promotion: {
+                        active: true,
+                        discount: 10, // percentuale
+                        schedule: {
+                            startDate: '2026-10-15T00:00:00', // Data/ora di inizio
+                            endDate: '2026-11-14T23:59:59'    // Data/ora di fine
+                        },
+                        label: 'OFFERTA HARRY POTTER',
+                        promoId: 'harrypotter2026'
+                    },
                     category: 'giochi',
-                    image: 'https://images.unsplash.com/photo-1586165368502-1bad197a6461?w=400&h=300&fit=crop',
+                    image: 'img/stampe3D/scacchiera/Stampe3D.png',
+                    gallery: [
+                        'img/stampe3D/scacchiera/Stampe3D.png',
+                        'img/stampe3D/scacchiera/scacchiera1.jpg',
+                        'img/stampe3D/scacchiera/scacchiera2.jpg',
+                        'img/stampe3D/scacchiera/scacchiera3.jpg',
+                        'img/stampe3D/scacchiera/scacchiera4.jpg',
+                        'img/stampe3D/scacchiera/scacchiera5.jpg'
+                    ],
                     customizations: {
-                        colore: {
-                            label: 'Colore Squadra',
-                            options: [
-                                { name: 'Nero', price: 0 },
-                                { name: 'Rosso', price: 0 }
-                            ]
-                        }
+                        colore: { label: 'Colore Squadra 1', options: [
+                            { name: 'Nero', price: 0 },
+                            { name: 'Rosso', price: 0  },
+                            { name: 'Giallo', price: 0  },
+                            { name: 'Blu', price: 0 },
+                            { name: 'Verde', price: 0 },
+                            { name: 'Oro', price: 0 },
+                            { name: 'Argento', price: 0 }
+                        ]},
+                        colore1: { label: 'Colore Squadra 2', options: [
+                            { name: 'Nero', price: 0 },
+                            { name: 'Rosso', price: 0  },
+                            { name: 'Giallo', price: 0  },
+                            { name: 'Blu', price: 0 },
+                            { name: 'Verde', price: 0 },
+                            { name: 'Oro', price: 0 },
+                            { name: 'Argento', price: 0 }
+                        ]},
+                        colore2: { label: 'Colore Legno di Base', options: [
+                            { name: 'Nero', price: 0 },
+                            { name: 'Rosso', price: 1  },
+                            { name: 'Giallo', price: 1  },
+                            { name: 'Blu', price: 1 },
+                            { name: 'Verde', price: 1 }
+                        ]},
+                        quality: { label: 'Risoluzione', options: [
+                            { name: 'Draft (0.3mm)', price: 0 },
+                            { name: 'Standard (0.2mm)', price: 0 },
+                            { name: 'High Quality (0.16mm)', price: 3 },
+                            { name: 'Fine (0.12mm)', price: 5 },
+                            { name: 'Ultra Fine (0.08mm)', price: 7 }
+                        ]},
+                        text: { label: 'Testo Personalizzato', type: 'text', maxLength: 50 }
                     }
                 },
                 {
                     id: 'ST3D2',
-                    name: 'Stand per bacchette',
-                    description: 'Stand in plastica per bacchette di Harry Potter',
-                    descrizioneApprofondita: 'Stand realizzato per esporre bacchette ispirate al mondo di Harry Potter.',
-                    basePrice: 29.99,
+                    name: 'Stand per bacchette - Harry Potter',
+                    description: 'Stand in plastica stampata in 3D per esporre le bacchette di Harry Potter, ideale per collezionisti.',
+                    descrizioneApprofondita: 'Stand realizzato interamente in plastica stampata in 3D, progettato per esporre in modo elegante e ordinato le bacchette ispirate al mondo di Harry Potter. Robusto e curato nei dettagli, offre un supporto stabile e scenografico per la tua collezione, perfetto per fan e collezionisti della saga. (Tema Doni della Morte)',
+                    basePrice: 30,
+                    promotion: {
+                        active: true,
+                        discount: 10, // percentuale
+                        schedule: {
+                            startDate: '2026-10-15T00:00:00', // Data/ora di inizio
+                            endDate: '2026-11-14T23:59:59'    // Data/ora di fine
+                        },
+                        label: 'OFFERTA HARRY POTTER',
+                        promoId: 'harrypotter2026'
+                    },
                     category: 'arredamento',
-                    image: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=300&fit=crop',
+                    image: 'img/stampe3D/portaBacchette/harryPotterWand.jpeg',
+                    gallery: [
+                        'img/stampe3D/portaBacchette/harryPotterWand.jpeg',
+                        'img/stampe3D/portaBacchette/wandStand (1).jpg',
+                        'img/stampe3D/portaBacchette/wandStand (2).jpg',
+                        'img/stampe3D/portaBacchette/wandStand (3).jpg',
+                        'img/stampe3D/portaBacchette/wandStand (4).jpg'
+                    ],
                     customizations: {
-                        colore: {
-                            label: 'Colore',
-                            options: [
-                                { name: 'Nero', price: 0 },
-                                { name: 'Rosso', price: 0.99 }
-                            ]
-                        }
+                        colore: { label: 'Colore', options: [
+                            { name: 'Nero', price: 0 },
+                            { name: 'Rosso', price: 1  },
+                            { name: 'Giallo', price: 1  },
+                            { name: 'Blu', price: 1 },
+                            { name: 'Verde', price: 1 },
+                            { name: 'Oro', price: 1 },
+                            { name: 'Argento', price: 1 },
+                        ]},
+                        colore1: { label: 'Colore Cornice', options: [
+                            { name: 'Nero', price: 0 },
+                            { name: 'Rosso', price: 1  },
+                            { name: 'Giallo', price: 1  },
+                            { name: 'Blu', price: 1 },
+                            { name: 'Verde', price: 1 },
+                            { name: 'Oro', price: 1 },
+                            { name: 'Argento', price: 1 },
+                            { name: 'Azzurro (Fluorescente)', price: 3 }
+                        ]},
+                        quality: { label: 'Risoluzione', options: [
+                            { name: 'Draft (0.3mm)', price: 0 },
+                            { name: 'Standard (0.2mm)', price: 0 },
+                            { name: 'High Quality (0.16mm)', price: 3 },
+                            { name: 'Fine (0.12mm)', price: 5 },
+                            { name: 'Ultra Fine (0.08mm)', price: 7 }
+                        ]},
                     }
-                }
+                },
+                {
+                    id: 'ST3D3',
+                    name: 'Abat-jour',
+                    description: 'Abat-jour in plastica stampata in 3D dal design moderno, ideale per arredare con stile.',
+                    descrizioneApprofondita: 'Abat-jour elegante e moderno, realizzato in plastica stampata in 3D. Il design unico e contemporaneo lo rende perfetto per ogni ambiente, dalla camera da letto al soggiorno. Disponibile in diverse colorazioni, è un complemento d\'arredo che unisce funzionalità e stile.',
+                    basePrice: 50,
+                    promotion: {
+                        active: true,
+                        discount: 10, // percentuale
+                        schedule: {
+                            startDate: '2026-05-15T00:00:00',
+                            endDate: '2026-06-30T23:59:59'
+                        },
+                        label: 'OFFERTA ESTIVA',
+                        promoId: 'estate2026'
+                    },
+                    category: 'arredamento',
+                    image: 'img/stampe3D/luci/lampada3D.jpeg',
+                    gallery: [
+                        'img/stampe3D/luci/lampada3D.jpeg',
+                        'img/stampe3D/luci/lampada (1).jpg',
+                        'img/stampe3D/luci/lampada (2).jpg',
+                        'img/stampe3D/luci/lampada (3).jpg',
+                        'img/stampe3D/luci/lampada (4).jpg',
+                        'img/stampe3D/luci/lampada (5).jpg'
+                    ],
+                    customizations: {
+                        colore: { label: 'Colore della Base', options: [
+                            { name: 'Nero', price: 0 },
+                            { name: 'Rosso', price: 0  },
+                            { name: 'Giallo', price: 0  },
+                            { name: 'Blu', price: 0 },
+                            { name: 'Verde', price: 0 },
+                            { name: 'Oro', price: 0 },
+                            { name: 'Argento', price: 0 },
+                            { name: 'Personalizzato', price: 0 }
+                        ]},
+                        quality: { label: 'Risoluzione', options: [
+                            { name: 'Draft (0.3mm)', price: 0 },
+                            { name: 'Standard (0.2mm)', price: 0 },
+                            { name: 'High Quality (0.16mm)', price: 6 },
+                            { name: 'Fine (0.12mm)', price: 8 },
+                            { name: 'Ultra Fine (0.08mm)', price: 10 }
+                        ]},
+
+                        personalization: { label: 'Inserire il colore personalizzato se selezionato', type: 'text', maxLength: 30 }
+                    }
+                },
+                {
+                    id: 'ST3D4',
+                    name: 'Elefantino effetto uncinetto',
+                    description: 'Elefantino decorativo stampato in 3D con effetto uncinetto, ideale per arredare, come regalo, come segnaposto per un battesimo.',
+                    descrizioneApprofondita: 'Elefantino decorativo stampato in 3D con effetto uncinetto, perfetto per aggiungere un tocco di originalità e stile alla tua casa o come idea regalo unica. Realizzato con cura e attenzione ai dettagli, è ideale anche come segnaposto per battesimi o come decorazione per la cameretta dei bambini.',
+                    basePrice: 4,
+                    promotion: {
+                        active: true,
+                        discount: 10, // percentuale
+                        schedule: {
+                            startDate: '2026-05-15T00:00:00',
+                            endDate: '2026-06-30T23:59:59'
+                        },
+                        label: 'OFFERTA ESTIVA',
+                        promoId: 'estate2026'
+                    },
+                    category: 'decorazioni',
+                    image: 'img/stampe3D/segnaposto/segnapostoBattesimo.jpeg',
+                    gallery: [
+                        'img/stampe3D/segnaposto/segnapostoBattesimo.jpeg',
+                        'img/stampe3D/segnaposto/elefantinoMaglia (1).jpg',
+                        'img/stampe3D/segnaposto/elefantinoMaglia (2).jpg',
+                        'img/stampe3D/segnaposto/elefantinoMaglia (3).jpg',
+                        'img/stampe3D/segnaposto/elefantinoMaglia (4).jpg',
+                        'img/stampe3D/segnaposto/elefantinoMaglia (5).jpg',
+                    ],
+                    customizations: {
+                        quality: { label: 'Risoluzione', options: [
+                            { name: 'Draft (0.3mm)', price: 0 },
+                            { name: 'Standard (0.2mm)', price: 0 },
+                            { name: 'High Quality (0.16mm)', price: 1 },
+                            { name: 'Fine (0.12mm)', price: 2 },
+                            { name: 'Ultra Fine (0.08mm)', price: 3 }
+                        ]},
+                        colore1: { label: 'Colore Elefantino', options: [
+                            { name: 'Nero', price: 0 },
+                            { name: 'Rosso', price: 0  },
+                            { name: 'Giallo', price: 0  },
+                            { name: 'Blu', price: 0 },
+                            { name: 'Verde', price: 0 },
+                            { name: 'Oro', price: 0 },
+                            { name: 'Argento', price: 0 },
+                            { name: 'Personalizzato', price: 0 }
+                        ]},
+                        colore2: { label: 'Colore Cuore', options: [
+                            { name: 'Nero', price: 0 },
+                            { name: 'Rosso', price: 0  },
+                            { name: 'Giallo', price: 0  },
+                            { name: 'Blu', price: 0 },
+                            { name: 'Verde', price: 0 },
+                            { name: 'Oro', price: 0 },
+                            { name: 'Argento', price: 0 },
+                            { name: 'Personalizzato', price: 0 }
+                        ]},
+                        personalization: { label: 'Inserire i colori personalizzati se selezionati (in ordine)', type: 'text', maxLength: 30 }
+                    }
+                },
+                {
+                    id: 'ST3D5',
+                    name: 'Scritta centrotavola',
+                    description: 'Scritta personalizzata in plastica stampata in 3D, ideale come centrotavola per battesimi, comunioni, cresime, matrimoni, o altri eventi speciali.',
+                    descrizioneApprofondita: 'Realizzata con cura e attenzione ai dettagli, questa scritta può essere personalizzata con nomi, date o frasi significative, rendendo ogni evento ancora più speciale e memorabile.',
+                    basePrice: 25,
+                    promotion: {
+                        active: true,
+                        discount: 10, // percentuale
+                        schedule: {
+                            startDate: '2026-05-15T00:00:00',
+                            endDate: '2026-06-30T23:59:59'
+                        },
+                        label: 'OFFERTA ESTIVA',
+                        promoId: 'estate2026'
+                    },
+                    category: 'decorazioni',
+                    image: 'img/stampe3D/scritta/scritta (3).jpg',
+                    gallery: [
+                        'img/stampe3D/scritta/scritta (3).jpg',
+                        'img/stampe3D/scritta/scritta (2).jpg',
+                        'img/stampe3D/scritta/scritta (1).jpg'
+                    ],
+                    customizations: {
+                        dimensioni: { label: 'Dimensioni Cubi', options: [
+                            { name: '8x8x5', price: 0 },
+                            { name: '8x8x8', price: 5 },
+                            { name: '10x10x10', price: 10 }
+                        ]},
+                        quantità: { label: 'Quantità delle Lettere', options: [
+                            { name: '3-5', price: 0 },
+                            { name: '6-9', price: 5 },
+                            { name: '10-x', price: 10 }
+                        ]},
+                        quality: { label: 'Risoluzione', options: [
+                            { name: 'Draft (0.3mm)', price: 0 },
+                            { name: 'Standard (0.2mm)', price: 0 },
+                            { name: 'High Quality (0.16mm)', price: 3 },
+                            { name: 'Fine (0.12mm)', price: 5 },
+                            { name: 'Ultra Fine (0.08mm)', price: 7 }
+                        ]},
+                        colore: { label: 'Colore Cubi', options: [
+                            { name: 'Nero', price: 0 },
+                            { name: 'Rosso', price: 0  },
+                            { name: 'Giallo', price: 0  },
+                            { name: 'Blu', price: 0 },
+                            { name: 'Verde', price: 0 },
+                            { name: 'Oro', price: 0 },
+                            { name: 'Argento', price: 0 },
+                            { name: 'Arancio', price: 0 },
+                            { name: 'Rosa', price: 0 },
+                            { name: 'Viola', price: 0 },
+                            { name: 'Personalizzato', price: 0 }
+                        ]},
+                        colors: { label: 'Colore Lettere', options: [
+                            { name: 'Nero', price: 0 },
+                            { name: 'Rosso', price: 0  },
+                            { name: 'Giallo', price: 0  },
+                            { name: 'Blu', price: 0 },
+                            { name: 'Verde', price: 0 },
+                            { name: 'Oro', price: 0 },
+                            { name: 'Argento', price: 0 },
+                            { name: 'Arancio', price: 0 },
+                            { name: 'Rosa', price: 0 },
+                            { name: 'Viola', price: 0 },
+                            { name: 'Personalizzato', price: 0 }
+                        ]},
+                        personalization: { label: 'Inserire i colori personalizzati se selezionati (in ordine)', type: 'text', maxLength: 30 }
+                    }
+                },
             ]
         };
 
@@ -2949,19 +3625,22 @@
                 this.currentTotal = 0;
                 this.favorites = JSON.parse(localStorage.getItem('meco_favorites')) || [];
                 this.countdownInterval = null;
+                this.promotionCheckInterval = null; // Nuovo intervallo per promozioni
                 
                 // Carica recensioni
                 const savedReviews = localStorage.getItem('meco_reviews');
                 if (savedReviews) {
                     this.reviewsData = JSON.parse(savedReviews);
                 } else {
-                    // Recensioni di default - AGGIORNATE PER AVERE UNA MEDIA 4.9
                     this.reviewsData = [];
                     localStorage.setItem('meco_reviews', JSON.stringify(this.reviewsData));
                 }
                 
-                // Calcola e stampa la media attuale (per debug)
-                console.log(`📊 Statistiche recensioni: ${this.formatAverageRating()}/5 da ${this.reviewsData.length} recensioni`);
+                // IMPORTANTE: Aggiorna subito lo stato delle promozioni
+                this.updatePromotionsStatus();
+
+                // Inizializza mappa per countdown
+                this.promoCountdownIntervals = new Map();
                 
                 this.init();
             }
@@ -3076,6 +3755,184 @@
                 this.attachFavoritesEventListeners();
                 
                 console.log('✅ Preferiti caricati e event listener attaccati');
+            }
+
+            // Controlla se un'orario è valido per la promozione
+            isPromotionScheduled(promotion) {
+                if (!promotion || !promotion.schedule) {
+                    return false;
+                }
+                
+                const now = new Date();
+                
+                try {
+                    // Converti le date - IMPORTANTE: gestisci il fuso orario
+                    const startDate = new Date(promotion.schedule.startDate);
+                    const endDate = new Date(promotion.schedule.endDate);
+                    
+                    console.log('🔍 Controllo promozione:', {
+                        prodotto: 'Rose',
+                        oraLocale: now.toLocaleString('it-IT'),
+                        oraISO: now.toISOString(),
+                        inizioLocale: startDate.toLocaleString('it-IT'),
+                        fineLocale: endDate.toLocaleString('it-IT'),
+                        inizioISO: startDate.toISOString(),
+                        fineISO: endDate.toISOString(),
+                        dopoInizio: now >= startDate,
+                        primaFine: now <= endDate,
+                        attiva: (now >= startDate) && (now <= endDate)
+                    });
+                    
+                    // Controlla se le date sono valide
+                    if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
+                        console.error('❌ Date non valide');
+                        return false;
+                    }
+                    
+                    // Controlla se siamo nel periodo
+                    const isActive = (now >= startDate) && (now <= endDate);
+                    
+                    return isActive;
+                    
+                } catch (error) {
+                    console.error('❌ Errore nel controllo:', error);
+                    return false;
+                }
+            }
+
+            // Raggruppa tutte le promozioni attive per tipo
+            getActivePromotions() {
+                const allProducts = [...productsData.incisioni, ...productsData.stampe3d];
+                const promotionsMap = new Map();
+                
+                console.log('🔍 Ricerca promozioni attive...');
+                
+                allProducts.forEach(product => {
+                    if (product.promotion && 
+                        product.promotion.active && 
+                        this.isPromotionValid(product.promotion)) {
+                        
+                        // Usa label come fallback se non c'è promoId
+                        const promoKey = product.promotion.promoId || 
+                                        product.promotion.label?.replace(/\s+/g, '_').toLowerCase() || 
+                                        'generic_promo';
+                        
+                        console.log(`✓ ${product.name}: ${promoKey} (${product.promotion.discount}%)`);
+                        
+                        if (!promotionsMap.has(promoKey)) {
+                            promotionsMap.set(promoKey, {
+                                id: promoKey,
+                                label: product.promotion.label || 'Offerta Speciale',
+                                endDate: product.promotion.schedule ? 
+                                        new Date(product.promotion.schedule.endDate) : 
+                                        new Date('2025-12-31T23:59:59'),
+                                discount: product.promotion.discount || 10,
+                                products: []
+                            });
+                        }
+                        
+                        promotionsMap.get(promoKey).products.push(product.name);
+                    }
+                });
+                
+                const result = Array.from(promotionsMap.values());
+                console.log(`Trovate ${result.length} promozioni attive`);
+                return result;
+            }
+
+            // Aggiungi questa funzione per debug
+            debugPromotions() {
+                const allProducts = [...productsData.incisioni, ...productsData.stampe3d];
+                
+                console.log('=== DEBUG PROMOZIONI ===');
+                console.log('Ora attuale:', new Date().toISOString());
+                
+                allProducts.forEach(product => {
+                    if (product.promotion && product.promotion.schedule) {
+                        console.log(`Prodotto: ${product.name}`);
+                        console.log(`  Start: ${product.promotion.schedule.startDate}`);
+                        console.log(`  End: ${product.promotion.schedule.endDate}`);
+                        console.log(`  Active (calcolato): ${this.isPromotionScheduled(product.promotion)}`);
+                        console.log(`  Active (attuale): ${product.promotion.active}`);
+                        console.log('---');
+                    }
+                });
+            }
+
+            // Controlla se la promozione è valida (ora e data)
+            isPromotionValid(promotion) {
+                if (!promotion) return false;
+                
+                // Se c'è una programmazione, controlla quella
+                if (promotion.schedule) {
+                    return this.isPromotionScheduled(promotion);
+                }
+                
+                // Altrimenti usa il vecchio sistema
+                if (promotion.endDate) {
+                    const now = new Date();
+                    const endDate = new Date(promotion.endDate);
+                    return now <= endDate;
+                }
+                
+                // Se non c'è endDate, è sempre valida
+                return true;
+            }
+
+            // Sostituisci la funzione updatePromotionsStatus con questa:
+            updatePromotionsStatus() {
+                console.log('⏰ Aggiornamento stato promozioni...');
+                
+                const allProducts = [...productsData.incisioni, ...productsData.stampe3d];
+                const now = new Date();
+                let changed = false;
+                
+                allProducts.forEach(product => {
+                    if (product.promotion && product.promotion.schedule) {
+                        try {
+                            const startDate = new Date(product.promotion.schedule.startDate);
+                            const endDate = new Date(product.promotion.schedule.endDate);
+                            
+                            // Determina se dovrebbe essere attiva
+                            const shouldBeActive = (now >= startDate) && (now <= endDate);
+                            
+                            // Se c'è un cambiamento, aggiorna
+                            if (product.promotion.active !== shouldBeActive) {
+                                product.promotion.active = shouldBeActive;
+                                changed = true;
+                                
+                                console.log(`🔄 ${product.name}: ${shouldBeActive ? 'ATTIVATA' : 'DISATTIVATA'}`);
+                                
+                                // Se una promozione è appena scaduta, ferma il countdown
+                                if (!shouldBeActive && product.promotion.promoId) {
+                                    this.stopPromoCountdown(product.promotion.promoId);
+                                }
+                            }
+                            
+                        } catch (error) {
+                            console.error(`Errore in ${product.name}:`, error);
+                        }
+                    }
+                });
+                
+                if (changed) {
+                    console.log('✅ Stati promozioni aggiornati');
+                    // Aggiorna i banner
+                    this.updatePromoBanners();
+                    this.filterProducts();
+                }
+                
+                return changed;
+            }
+
+            // Avvia il controllo periodico delle promozioni
+            startPromotionChecker() {
+                // Controlla ogni minuto se una promozione deve iniziare/finire
+                setInterval(() => {
+                    this.updatePromotionsStatus();
+                    this.updatePromoBannerVisibility();
+                    this.filterProducts(); // Aggiorna la vista catalogo
+                }, 60000); // Ogni minuto
             }
 
             // Nuovo metodo per attaccare gli event listener
@@ -3193,19 +4050,43 @@
                 // Setup favoriti
                 this.updateFavoritesCount();
                 
-                // Setup recensioni - CARICA SUBITO
+                // Setup recensioni
                 setTimeout(() => {
                     console.log('📝 Caricamento recensioni...');
                     this.setupReviewsSystem();
-                    this.updateReviewsDisplay(); // Aggiorna le statistiche
+                    this.updateReviewsDisplay();
                 }, 100);
                 
-                // Setup promozioni
+                // Setup promozioni - IMPORTANTE: PRIMA startPromotions, POI banner
+                this.startPromotions();
                 this.updatePromoBannerVisibility();
-                this.initPromotions();
+                this.updatePromoBanners(); // ← NUOVO: invece di updatePromoBannerVisibility()
                 this.updatePromoPrices();
                 
                 console.log('✅ Inizializzazione completata');
+            }
+
+            // Nuova funzione per gestire promozioni
+            startPromotions() {
+                console.log('🎯 Avvio sistema promozioni');
+                
+                // Aggiorna subito lo stato
+                this.updatePromotionsStatus();
+                
+                // Avvia controllo ogni 30 secondi (per test, poi puoi mettere 60 secondi)
+                this.promotionCheckInterval = setInterval(() => {
+                    console.log('⏱️ Controllo periodico promozioni...');
+                    this.updatePromotionsStatus();
+                }, 30000); // 30 secondi
+                
+                // Aggiorna anche il countdown ogni secondo
+                if (this.countdownInterval) {
+                    clearInterval(this.countdownInterval);
+                }
+                
+                this.countdownInterval = setInterval(() => {
+                    this.updatePromoCountdown();
+                }, 1000);
             }
 
             setupReviewsSystem() {
@@ -3626,6 +4507,179 @@
                 const searchTerm = document.getElementById('search-input').value.toLowerCase();
                 const activeFilter = document.querySelector('.filter-btn.active').dataset.category;
                 this.displayProducts(activeFilter, searchTerm);
+            }
+
+            // Aggiorna tutti i banner promozionali
+            updatePromoBanners() {
+                console.log('🎪 Aggiornamento banner promozionali...');
+                
+                const container = document.getElementById('promo-banners-container');
+                const template = document.getElementById('promo-banner-template');
+                
+                if (!container) {
+                    console.error('❌ Container banner non trovato!');
+                    return;
+                }
+                
+                if (!template) {
+                    console.error('❌ Template banner non trovato!');
+                    return;
+                }
+                
+                // Ottieni promozioni attive
+                const activePromotions = this.getActivePromotions();
+                
+                console.log('Promozioni attive trovate:', activePromotions.length);
+                
+                if (activePromotions.length === 0) {
+                    container.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">Nessuna offerta attiva al momento</p>';
+                    console.log('Nessuna promozione attiva per mostrare banner');
+                    return;
+                }
+                
+                // Pulisci container
+                container.innerHTML = '';
+                
+                // Crea un banner per ogni promozione attiva
+                activePromotions.forEach(promo => {
+                    console.log('Creando banner per:', promo.label);
+                    
+                    const banner = template.content.cloneNode(true);
+                    const bannerElement = banner.querySelector('.promo-banner');
+                    
+                    // Imposta ID promozione
+                    bannerElement.setAttribute('data-promo-id', promo.id);
+                    
+                    // Personalizza contenuto
+                    bannerElement.querySelector('.promo-label').textContent = promo.label;
+                    bannerElement.querySelector('.promo-title').textContent = 
+                        `Sconto del ${promo.discount}%!`;
+                    bannerElement.querySelector('.promo-description').textContent = 
+                        `Su ${promo.products.length} prodotti • Valido fino al ${promo.endDate.toLocaleDateString('it-IT')}`;
+                    
+                    // Bottone per vedere prodotti
+                    const promoBtn = bannerElement.querySelector('.promo-btn');
+                    promoBtn.onclick = (e) => {
+                        e.preventDefault();
+                        this.switchSection('catalogo');
+                    };
+                    
+                    // Bottone per chiudere
+                    const closeBtn = bannerElement.querySelector('.promo-close');
+                    closeBtn.onclick = (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        this.hidePromoBanner(promo.id);
+                    };
+                    
+                    container.appendChild(banner);
+                    
+                    // Avvia countdown per questo banner
+                    this.startPromoCountdown(promo.id, promo.endDate);
+                    
+                    console.log(`✅ Banner creato per: ${promo.label}`);
+                });
+                
+                console.log(`Creati ${activePromotions.length} banner promozionali`);
+            }
+
+            // Avvia countdown per una specifica promozione
+            startPromoCountdown(promoId, endDate) {
+                console.log(`⏱️ Avvio countdown per ${promoId}`);
+                
+                const updateCountdown = () => {
+                    const now = new Date();
+                    const timeLeft = endDate - now;
+                    
+                    if (timeLeft <= 0) {
+                        // Promozione scaduta
+                        console.log(`⏰ Countdown scaduto per ${promoId}`);
+                        if (this.promoCountdownIntervals && this.promoCountdownIntervals.has(promoId)) {
+                            clearInterval(this.promoCountdownIntervals.get(promoId));
+                            this.promoCountdownIntervals.delete(promoId);
+                        }
+                        this.removePromoBanner(promoId);
+                        return;
+                    }
+                    
+                    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+                    
+                    // Aggiorna display
+                    const banner = document.querySelector(`[data-promo-id="${promoId}"]`);
+                    if (banner) {
+                        const daysEl = banner.querySelector('[data-type="days"]');
+                        const hoursEl = banner.querySelector('[data-type="hours"]');
+                        const minutesEl = banner.querySelector('[data-type="minutes"]');
+                        const secondsEl = banner.querySelector('[data-type="seconds"]');
+                        
+                        if (daysEl) daysEl.textContent = days.toString().padStart(2, '0');
+                        if (hoursEl) hoursEl.textContent = hours.toString().padStart(2, '0');
+                        if (minutesEl) minutesEl.textContent = minutes.toString().padStart(2, '0');
+                        if (secondsEl) secondsEl.textContent = seconds.toString().padStart(2, '0');
+                    }
+                };
+                
+                // Aggiorna immediatamente
+                updateCountdown();
+                
+                // Aggiorna ogni secondo
+                const intervalId = setInterval(updateCountdown, 1000);
+                
+                // Salva l'interval ID per poterlo fermare
+                if (!this.promoCountdownIntervals) {
+                    this.promoCountdownIntervals = new Map();
+                }
+                this.promoCountdownIntervals.set(promoId, intervalId);
+            }
+
+            // Nascondi un banner specifico
+            hidePromoBanner(promoId) {
+                const banner = document.querySelector(`[data-promo-id="${promoId}"]`);
+                if (banner) {
+                    banner.style.opacity = '0';
+                    banner.style.transform = 'translateY(-20px)';
+                    
+                    setTimeout(() => {
+                        banner.style.display = 'none';
+                        
+                        // Salva in localStorage che questo banner è stato chiuso
+                        const closedBanners = JSON.parse(localStorage.getItem('meco_closed_banners') || '[]');
+                        if (!closedBanners.includes(promoId)) {
+                            closedBanners.push(promoId);
+                            localStorage.setItem('meco_closed_banners', JSON.stringify(closedBanners));
+                        }
+                        
+                        // Ferma il countdown
+                        this.stopPromoCountdown(promoId);
+                        
+                    }, 300);
+                }
+            }
+
+            // Rimuovi banner (quando scade)
+            removePromoBanner(promoId) {
+                const banner = document.querySelector(`[data-promo-id="${promoId}"]`);
+                if (banner) {
+                    banner.remove();
+                    this.stopPromoCountdown(promoId);
+                }
+            }
+
+            // Ferma countdown
+            stopPromoCountdown(promoId) {
+                if (this.promoCountdownIntervals && this.promoCountdownIntervals.has(promoId)) {
+                    clearInterval(this.promoCountdownIntervals.get(promoId));
+                    this.promoCountdownIntervals.delete(promoId);
+                }
+            }
+
+            // Controlla se un banner è stato chiuso manualmente
+            isBannerClosed(promoId) {
+                const closedBanners = JSON.parse(localStorage.getItem('meco_closed_banners') || '[]');
+                return closedBanners.includes(promoId);
             }
 
             displayProducts(type = 'tutti', searchTerm = '') {
@@ -5157,13 +6211,31 @@
             }
 
             isPromotionValid(promotion) {
-                if (!promotion || !promotion.endDate) return false;
+                if (!promotion) return false;
                 
-                const now = new Date();
-                const endDate = new Date(promotion.endDate);
+                // Se c'è schedule, controlla le date
+                if (promotion.schedule) {
+                    try {
+                        const now = new Date();
+                        const startDate = new Date(promotion.schedule.startDate);
+                        const endDate = new Date(promotion.schedule.endDate);
+                        
+                        // Prima controlla che le date siano valide
+                        if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
+                            return false;
+                        }
+                        
+                        // Poi controlla se siamo nel periodo
+                        return (now >= startDate) && (now <= endDate);
+                        
+                    } catch (error) {
+                        console.error('Errore nel controllo promozione:', error);
+                        return false;
+                    }
+                }
                 
-                // Controlla se la promozione è ancora valida
-                return now <= endDate;
+                // Se non c'è schedule, usa active
+                return promotion.active === true;
             }
 
             formatDate(dateString) {
